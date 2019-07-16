@@ -15,13 +15,14 @@ RUN git clone https://github.com/caddyserver/caddy caddy2 \
     && git fetch \
     && git checkout v2
 
+COPY initial-conf.json /caddy/caddy2/cmd/caddy/initial-conf.json
 WORKDIR /caddy/caddy2/cmd/caddy
 
 RUN go build -v
-CMD ["./caddy", "start"]
+CMD ["./caddy", "start",  "--config", "initial-conf.json"]
 
 EXPOSE 2019 2019
 EXPOSE 80 2080
-#WORKDIR /srv
 
+#WORKDIR /srv
 #COPY index.html /srv/index.html
