@@ -17,11 +17,11 @@ RUN git clone https://github.com/caddyserver/caddy caddy2 \
 
 WORKDIR /caddy/caddy2/cmd/caddy
 
-RUN go build
+RUN go build -v
 CMD ["./caddy", "start"]
 
 EXPOSE 2019 2019
 EXPOSE 80 2080
-WORKDIR /srv
+#WORKDIR /srv
 
-COPY index.html /srv/index.html
+#COPY index.html /srv/index.html
