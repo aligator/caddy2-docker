@@ -3,14 +3,18 @@
 		"http": {
 			"servers": {
 				"caddy2-docker": {
-					"listen": ["localhost:2080"],
+					"listen": [
+						"localhost:2080"
+					],
 					"routes": [
 						{
-							"handle": [{
-								"handler": "file_server",
-								"root": "/srv",
-								"browse": {}
-							}]
+							"handle": [
+								{
+									"handler": "file_server",
+									"root": "/srv",
+									"browse": {}
+								}
+							]
 						}
 					]
 				}
