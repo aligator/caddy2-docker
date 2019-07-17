@@ -3,6 +3,11 @@
 #
 FROM golang:1.12-alpine
 
+# Copy the index file which confirms that the Caddy 2
+# container is up and running.
+WORKDIR /srv
+COPY index.html ./index.html
+
 # Create Caddy's working directory.
 RUN mkdir /caddy
 WORKDIR /caddy
@@ -22,7 +27,4 @@ RUN go build -v
 CMD ["./caddy", "run", "--config", "initial-conf.json"]
 
 EXPOSE 2019 2019
-EXPOSE 80 2080
-
-#WORKDIR /srv
-#COPY index.html /srv/index.html
+EXPOSE 2080 2080
