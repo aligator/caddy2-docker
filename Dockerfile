@@ -3,10 +3,9 @@
 #
 FROM golang:1.12-alpine
 
-# Copy the index file which confirms that the Caddy 2
+# The index file indicates that the Caddy
 # container is up and running.
-WORKDIR /srv
-COPY index.html ./index.html
+COPY index.html /srv/index.html
 
 # Create Caddy's working directory.
 RUN mkdir /caddy
@@ -21,10 +20,13 @@ RUN git clone https://github.com/caddyserver/caddy caddy2 \
     && git checkout v2
 
 WORKDIR /caddy/caddy2/cmd/caddy
+
+# The initial configuration declares a file server
+# delivering the index file in /srv.
 COPY initial-conf.json ./initial-conf.json
 
 RUN go build -v
 CMD ["./caddy", "run", "--config", "initial-conf.json"]
 
-EXPOSE 2019 2019
-EXPOSE 2080 2080
+EXPOSE 2019
+EXPOSE 2080
